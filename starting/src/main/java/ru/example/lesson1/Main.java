@@ -41,12 +41,21 @@ public class Main {
         quickSort(createArray());
         bubbleSort(createArray());
         sortBySelectionMethod(createArray());
+        sortByInsertion(createArray());
 
         int[] copyNumbers = copyArray(numbers);
         int[] copyNumbers2 = copyArray(numbers);
+        int[] copyNumbers3 = copyArray(numbers);
+
         quickSort(numbers);
         bubbleSort(copyNumbers);
         sortBySelectionMethod(copyNumbers2);
+        sortByInsertion(copyNumbers3);
+
+        printArray(numbers);
+        printArray(copyNumbers);
+        printArray(copyNumbers2);
+        printArray(copyNumbers3);
     }
 
     private static int[] copyArray(int[] array) {
@@ -55,6 +64,10 @@ public class Main {
 
     private static <T> T[] copyArray(T[] array) {
         return Arrays.copyOf(array, array.length);
+    }
+
+    private static void printArray(int[] array) {
+        System.out.println(Arrays.toString(array));
     }
 
     private static <T> void printArray(T[] array) {
@@ -75,7 +88,7 @@ public class Main {
 
         for (int i = 0; i < array.length; i++) {
             if (array[i].equals(obj)) {
-                System.out.println(System.nanoTime() - l);
+                System.out.println("Время выполнения линейного поиска: " + (System.nanoTime() - l));
 
                 return i;
             }
@@ -93,7 +106,7 @@ public class Main {
             int middle = (begin + end) / 2;
 
             if (array[middle] == element) {
-                System.out.println(System.nanoTime() - l);
+                System.out.println("Время выполнения бинарного поиска: " + (System.nanoTime() - l));
 
                 return middle;
             } else if (array[middle] < element) {
@@ -114,7 +127,8 @@ public class Main {
     private static void quickSort(int[] array) {
         long l = System.nanoTime();
         Arrays.sort(array);
-        System.out.println(System.nanoTime() - l);
+        System.out.println("Время выполнения метода Arrays.sort() для массива с " +
+                array.length + " элеметами: " + (System.nanoTime() - l));
     }
 
     /*
@@ -137,7 +151,8 @@ public class Main {
             }
         }
 
-        System.out.println(System.nanoTime() - l);
+        System.out.println("Время выполнения пузырьковой сортировки для массива с " +
+                array.length + " элеметами: " + (System.nanoTime() - l));
     }
 
     /*
@@ -163,7 +178,33 @@ public class Main {
             array[least] = tmp;
         }
 
-        System.out.println(System.nanoTime() - l);
+        System.out.println("Время выполнения сортировки методом выбора для массива с " +
+                array.length + " элеметами: " + (System.nanoTime() - l));
+    }
+
+    /*
+      Задание 2.6
+      На основе массива данных из задания 2.3 реализуйте алгоритм сортировки методом вставки.
+      Оцените сортировку с помощью базового класса System.nanoTime().
+      Сравните с временем выполнения алгоритмов сортировки из прошлых заданий 2.3, 2.4 и 2.5.
+     */
+    private static void sortByInsertion(int[] array) {
+        long l = System.nanoTime();
+
+        for (int i = 1; i < array.length; i++) {
+            int key = array[i];
+            int j = i - 1;
+
+            while (j >= 0 && array[j] > key) {
+                array[j + 1] = array[j];
+                j--;
+            }
+
+            array[j + 1] = key;
+        }
+
+        System.out.println("Время выполнения сортировки методом вставки для массива с " +
+                array.length + " элеметами: " + (System.nanoTime() - l));
     }
 
     private static int[] createArray() {
