@@ -1,11 +1,14 @@
 package ru.example.lesson1;
 
 import java.util.Arrays;
+import java.util.Random;
 
 public class Main {
     private static record Person(String name) {
 
     }
+
+    private static final int ARRAY_SIZE = 400;
 
     public static void main(String[] args) {
         /*
@@ -88,4 +91,24 @@ public class Main {
 
         return -1;
     }
+
+    /*
+      Задание 2.3
+      Создайте массив размером 400 элементов. Выполните сортировку с помощью метода sort().
+      Оцените сортировку с помощью базового класса System.nanoTime().
+     */
+    private static void sort() {
+        int[] array = new int[ARRAY_SIZE];
+        Random random = new Random();
+
+        for (int i = 0; i < ARRAY_SIZE; i++) {
+            array[i] = random.nextInt(100);
+        }
+
+        long l = System.nanoTime();
+        Arrays.sort(array);
+        System.out.println(l - System.nanoTime());
+    }
+
+
 }
