@@ -40,9 +40,17 @@ public class Main {
 
         quickSort(createArray());
         bubbleSort(createArray());
+        sortBySelectionMethod(createArray());
 
+        int[] copyNumbers = copyArray(numbers);
+        int[] copyNumbers2 = copyArray(numbers);
         quickSort(numbers);
-        bubbleSort(numbers);
+        bubbleSort(copyNumbers);
+        sortBySelectionMethod(copyNumbers2);
+    }
+
+    private static int[] copyArray(int[] array) {
+        return Arrays.copyOf(array, array.length);
     }
 
     private static <T> T[] copyArray(T[] array) {
@@ -127,6 +135,32 @@ public class Main {
                     array[j] = temp;
                 }
             }
+        }
+
+        System.out.println(System.nanoTime() - l);
+    }
+
+    /*
+      Задание 2.5
+      На основе массива данных из задания 2.3 реализуйте алгоритм сортировки методом выбора.
+      Оцените сортировку с помощью базового класса System.nanoTime().
+      Сравните с временем выполнения алгоритмов сортировки из прошлых заданий 2.3 и 2.4.
+     */
+    private static void sortBySelectionMethod(int[] array) {
+        long l = System.nanoTime();
+
+        for (int min = 0; min < array.length-1; min++) {
+            int least = min;
+
+            for (int j = min + 1; j < array.length; j++) {
+                if (array[j] < array[least]) {
+                    least = j;
+                }
+            }
+
+            int tmp = array[min];
+            array[min] = array[least];
+            array[least] = tmp;
         }
 
         System.out.println(System.nanoTime() - l);
