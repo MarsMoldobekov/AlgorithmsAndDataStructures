@@ -8,7 +8,8 @@ public class Main {
     }
 
     public static void main(String[] args) {
-        /*Задание 2.1
+        /*
+          Задание 2.1
           На основе программного кода из задания №1
           реализуйте массив на основе существующих примитивных или ссылочных типов данных.
           Выполните обращение к массиву и базовые операции класса Arrays.
@@ -45,5 +46,46 @@ public class Main {
 
     private static <T> void compareArrays(T[] array, T[] anotherArray) {
         System.out.println(Arrays.equals(array, anotherArray));
+    }
+
+    /*
+      Задание 2.2
+      На основе написанного кода в задании 2.1 реализуйте линейный и двоичный поиск.
+      Оценить алгоритмы линейного и двоичного поиска с помощью базового класса System.nanoTime().
+     */
+    private static <T> int find(T[] array, T obj) {
+        long l = System.nanoTime();
+
+        for (int i = 0; i < array.length; i++) {
+            if (array[i].equals(obj)) {
+                System.out.println(l - System.nanoTime());
+
+                return i;
+            }
+        }
+
+        return -1;
+    }
+
+    private static int binarySearch(int[] array, int element) {
+        int begin = 0;
+        int end = array.length - 1;
+        long l = System.nanoTime();
+
+        while (begin <= end) {
+            int middle = (begin + end) / 2;
+
+            if (array[middle] == element) {
+                System.out.println(l - System.nanoTime());
+
+                return middle;
+            } else if (array[middle] < element) {
+                begin = middle + 1;
+            } else {
+                end = middle - 1;
+            }
+        }
+
+        return -1;
     }
 }
