@@ -37,6 +37,12 @@ public class Main {
         printArray(persons);
 
         compareArrays(lines, newLines);
+
+        quickSort(createArray());
+        bubbleSort(createArray());
+
+        quickSort(numbers);
+        bubbleSort(numbers);
     }
 
     private static <T> T[] copyArray(T[] array) {
@@ -61,7 +67,7 @@ public class Main {
 
         for (int i = 0; i < array.length; i++) {
             if (array[i].equals(obj)) {
-                System.out.println(l - System.nanoTime());
+                System.out.println(System.nanoTime() - l);
 
                 return i;
             }
@@ -79,7 +85,7 @@ public class Main {
             int middle = (begin + end) / 2;
 
             if (array[middle] == element) {
-                System.out.println(l - System.nanoTime());
+                System.out.println(System.nanoTime() - l);
 
                 return middle;
             } else if (array[middle] < element) {
@@ -97,7 +103,36 @@ public class Main {
       Создайте массив размером 400 элементов. Выполните сортировку с помощью метода sort().
       Оцените сортировку с помощью базового класса System.nanoTime().
      */
-    private static void sort() {
+    private static void quickSort(int[] array) {
+        long l = System.nanoTime();
+        Arrays.sort(array);
+        System.out.println(System.nanoTime() - l);
+    }
+
+    /*
+      Задание 2.4
+      На основе существующего массива данных из задания 2.3 реализуйте алгоритм сортировки пузырьком.
+      Оцените сортировку с помощью базового класса System.nanoTime().
+      Сравните время выполнения алгоритмы сортировки методом sort() из задания 2.1 и сортировку пузырьком.
+     */
+    private static void bubbleSort(int[] array) {
+        long l = System.nanoTime();
+        int length = array.length;
+
+        for (int i = 0; i < length; i++) {
+            for (int j = 1; j < (length - i); j++) {
+                if (array[j - 1] > array[j]) {
+                    int temp = array[j - 1];
+                    array[j - 1] = array[j];
+                    array[j] = temp;
+                }
+            }
+        }
+
+        System.out.println(System.nanoTime() - l);
+    }
+
+    private static int[] createArray() {
         int[] array = new int[ARRAY_SIZE];
         Random random = new Random();
 
@@ -105,10 +140,6 @@ public class Main {
             array[i] = random.nextInt(100);
         }
 
-        long l = System.nanoTime();
-        Arrays.sort(array);
-        System.out.println(l - System.nanoTime());
+        return array;
     }
-
-
 }
