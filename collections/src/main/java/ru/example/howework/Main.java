@@ -111,7 +111,7 @@ public class Main {
         public void insertAtTop(T obj) {
             Node<T> node = new Node<>(obj, null, null);
 
-            if (firstNode == null && lastNode == null) {
+            if (isEmpty()) {
                 firstNode = lastNode = node;
             } else {
                 node.setNextNode(firstNode);
@@ -123,7 +123,7 @@ public class Main {
         public void insertAtBottom(T obj) {
             Node<T> node = new Node<>(obj, null, null);
 
-            if (firstNode == null && lastNode == null) {
+            if (isEmpty()) {
                 firstNode = lastNode = node;
             } else {
                 node.setPreviousNode(lastNode);
@@ -136,7 +136,7 @@ public class Main {
         public Node<T> deleteFirst() {
             Node<T> temp;
 
-            if (firstNode == null && lastNode == null) {
+            if (isEmpty()) {
                 temp = null;
             } else if (firstNode == lastNode) {
                 temp = firstNode;
@@ -154,7 +154,7 @@ public class Main {
         public Node<T> deleteLast() {
             Node<T> temp;
 
-            if (firstNode == null && lastNode == null) {
+            if (isEmpty()) {
                 temp = null;
             } else if (firstNode == lastNode) {
                 temp = lastNode;
