@@ -8,6 +8,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="starting" />
         <module name="collections" />
+        <module name="queueAndStack" />
       </profile>
     </annotationProcessing>
   </component>
