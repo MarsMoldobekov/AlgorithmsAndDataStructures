@@ -9,6 +9,7 @@
         <module name="starting" />
         <module name="collections" />
         <module name="queueAndStack" />
+        <module name="recursion" />
       </profile>
     </annotationProcessing>
   </component>
