@@ -11,6 +11,7 @@
         <module name="collections" />
         <module name="queueAndStack" />
         <module name="recursion" />
+        <module name="graph" />
       </profile>
     </annotationProcessing>
   </component>
