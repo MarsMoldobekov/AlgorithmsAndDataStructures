@@ -6,12 +6,13 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="tree" />
-        <module name="starting" />
         <module name="collections" />
         <module name="queueAndStack" />
+        <module name="tree" />
+        <module name="starting" />
         <module name="recursion" />
         <module name="graph" />
+        <module name="hash" />
       </profile>
     </annotationProcessing>
   </component>
